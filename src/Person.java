@@ -13,6 +13,9 @@ abstract public class Person {
     private String email;
     private boolean isBlocked =false;
 
+    // Array that contains a users Currently rented books
+    ArrayList<Book> rentedBooks= new ArrayList<Book>();
+
 
     public Person(String password, String type, String FIRSTNAME, String LASTNAME, String address, int cellPhone, String email) {
         this.password = password;
@@ -87,6 +90,23 @@ abstract public class Person {
     public void setBlocked(boolean blocked) {
         isBlocked = blocked;
     }
+
+
+    // Method checks if a certain cook is already rented or not, if rented then adds this person to a queue array, else rents book for this user
+    public void rentBook(String name, ArrayList<Book> books){
+        int i = searchBook(name, books);
+        if (books.get(i).isBooked){
+            books.get(i).getQueue.add(this);
+            System.out.println("You have been added to the queue!");
+        } else {
+            books.get(i).isBooked = true;
+            books.get(i).setRentedDays();
+            System.out.println("You have successfully rented the book, You have three days to return this book!");
+            this.rentedBooks.add(books.get(i));}}
+
+
+
+
 
     public int searchBook(String name, ArrayList<Book> books){
         for (int i = 0; i< books.size(); i++){
