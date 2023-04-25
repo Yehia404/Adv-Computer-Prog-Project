@@ -1,7 +1,11 @@
+import java.util.ArrayList;
+
 abstract public class Person {
     private int ID;
+
+    static int personCounter = 0;
     private String password;
-    private final String TYPE;
+    private final char TYPE;
     private final String FIRSTNAME;
     private final String LASTNAME;
     private String address;
@@ -10,15 +14,18 @@ abstract public class Person {
     private boolean isBlocked =false;
 
 
-    public Person(int ID, String password, String TYPE, String FIRSTNAME, String LASTNAME, String address, int cellPhone, String email) {
-        this.ID = ID;
+    public Person(String password, String type, String FIRSTNAME, String LASTNAME, String address, int cellPhone, String email) {
         this.password = password;
-        this.TYPE = TYPE;
+        this.TYPE = type.charAt(0);
         this.FIRSTNAME = FIRSTNAME;
         this.LASTNAME = LASTNAME;
         this.address = address;
         this.cellPhone = cellPhone;
         this.email = email;
+
+        this.ID = personCounter;
+        personCounter++;
+
     }
 
     public int getID() {
@@ -29,7 +36,7 @@ abstract public class Person {
         return password;
     }
 
-    public String getTYPE() {
+    public char getTYPE() {
         return TYPE;
     }
 
@@ -79,5 +86,31 @@ abstract public class Person {
 
     public void setBlocked(boolean blocked) {
         isBlocked = blocked;
+    }
+
+    public int searchBook(String name, ArrayList<Book> books){
+        for (int i = 0; i< books.size(); i++){
+            if (books.get(i).getName().equals(name)){
+                System.out.println("The book "+ books.get(i).getName()+ "index is: "+i );
+                return i;
+
+            }
+        }
+
+        return -1;
+
+    }
+    public int searchMember(int id, ArrayList<Person> persons){
+        for (int i = 0; i< persons.size(); i++){
+            if (persons.get(i).getID() == id){
+                System.out.println("First name:  "+persons.get(i).getFIRSTNAME()+ "\nLast name: "+persons.get(i).getLASTNAME()+ "\nEmail: "+persons.get(i).getEmail());
+                return i;
+
+            }
+        }
+
+        return -1;
+
+
     }
 }
