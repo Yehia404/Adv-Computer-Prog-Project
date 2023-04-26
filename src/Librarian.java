@@ -17,7 +17,7 @@ public class Librarian extends Person {
 
             books.remove(index);
         }else {
-            System.out.println("The book "+ name+ " was not found");
+            System.out.println("The book '"+ name+ "' was not found");
         }
 
     }
@@ -25,10 +25,11 @@ public class Librarian extends Person {
         persons.add(person);
     }
 
-    public void removeUser(int id, ArrayList<Person> persons){
+    public void removeUser(int id, ArrayList<Person> persons){            //can remove user from library or queue
         int index = searchMember(id, persons);
         if (index >=0){
             persons.remove(index);
+            System.out.println("user with id: "+ id+ " is removed");
         }else {
             System.out.println("The person with id "+id+ " was not found");
         }
@@ -38,8 +39,8 @@ public class Librarian extends Person {
         int userIndex = searchMember(id, persons);
 
         if (userIndex >= 0){
-            int indexPerson = searchMember(id, persons);
-            persons.get(indexPerson).rentBook(name, books);
+
+            persons.get(userIndex).rentBook(name, books);
         }else {
             System.out.println("User was not found");
         }

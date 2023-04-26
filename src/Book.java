@@ -4,7 +4,7 @@ public class Book {
     int rentedDays;
     private final String name;
     private final String author;
-    boolean isBooked = false;
+    private boolean isBooked = false;
 
     ArrayList<Person> queue= new ArrayList<Person>();
 
@@ -21,7 +21,7 @@ public class Book {
         return author;
     }
 
-    public boolean isBooked() {
+    public boolean getIsBooked() {
         return isBooked;
     }
 
@@ -29,7 +29,7 @@ public class Book {
         this.rentedDays = 0;
     }
 
-    public void setBooked(boolean booked) {
+    public void setIsBooked(boolean booked) {
         isBooked = booked;
     }
 

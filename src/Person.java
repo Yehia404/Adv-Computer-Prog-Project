@@ -93,34 +93,41 @@ abstract public class Person {
 
 
     // Method checks if a certain cook is already rented or not, if rented then adds this person to a queue array, else rents book for this user
-    public void rentBook(String name, ArrayList<Book> books){
+    public void rentBook(String name, ArrayList<Book> books) {
         int i = searchBook(name, books);
-        if (books.get(i).isBooked){
-            books.get(i).getQueue.add(this);
-            System.out.println("You have been added to the queue!");
+        if (i >= 0) {
+
+            if (books.get(i).getIsBooked()) {
+                books.get(i).queue.add(this);
+                System.out.println("You have been added to the queue!");
+            } else {
+                books.get(i).setIsBooked(true);
+                books.get(i).setRentedDays();
+                System.out.println("You have successfully rented the book, You have three days to return this book!");
+                this.rentedBooks.add(books.get(i));
+            }
         } else {
-            books.get(i).isBooked = true;
-            books.get(i).setRentedDays();
-            System.out.println("You have successfully rented the book, You have three days to return this book!");
-            this.rentedBooks.add(books.get(i));}}
+            System.out.println("Book was not found");
+        }
+    }
 
 
 
 
 
-    public int searchBook(String name, ArrayList<Book> books){
+    static public int searchBook(String name, ArrayList<Book> books){
         for (int i = 0; i< books.size(); i++){
             if (books.get(i).getName().equals(name)){
-                System.out.println("The book "+ books.get(i).getName()+ "index is: "+i );
+                System.out.println("The book '"+ books.get(i).getName()+ "' index is: "+i );
                 return i;
 
             }
         }
-
+        System.out.println("The book "+ name+ " was not found");
         return -1;
 
     }
-    public int searchMember(int id, ArrayList<Person> persons){
+    static public int searchMember(int id, ArrayList<Person> persons){
         for (int i = 0; i< persons.size(); i++){
             if (persons.get(i).getID() == id){
                 System.out.println("First name:  "+persons.get(i).getFIRSTNAME()+ "\nLast name: "+persons.get(i).getLASTNAME()+ "\nEmail: "+persons.get(i).getEmail());
@@ -128,7 +135,7 @@ abstract public class Person {
 
             }
         }
-
+        System.out.println("The person with id "+ id+ " was not found");
         return -1;
 
 
